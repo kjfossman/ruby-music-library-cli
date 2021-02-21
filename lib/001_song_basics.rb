@@ -9,13 +9,6 @@ attr_accessor :name, :artist, :genre
         @name = name
         self.artist = artist
         self.genre = genre
-        # @artist = artist
-        # if artist == nil
-        #     @artist = nil
-        # else
-        #     artist=(artist)
-        # end
-        # binding.pry
     end
 
     def self.all
@@ -70,15 +63,14 @@ attr_accessor :name, :artist, :genre
     def self.new_from_filename(filename)
         file = filename.split(' - ')
         genre_file = file[2].split(".")
-        # binding.pry
-        if find_by_name(file[1])
-            return find_by_name(file[1])
-        else
         song = find_or_create_by_name(file[1])
-        song.artist = Artist.new(file[0])
-        song.genre = Genre.new(genre_file[0])
+        song.artist = Artist.find_or_create_by_name(file[0])
+        song.genre = Genre.find_or_create_by_name(genre_file[0])
         song
-        end
+    end
+
+    def self.create_from_filename(filename)
+        new_from_filename(filename)
     end
 
 end
