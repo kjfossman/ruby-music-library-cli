@@ -27,10 +27,52 @@ class MusicLibraryController
     end
 
     def list_songs
-        songs = @obj.import
-        #binding.pry
-        
-        
+        ord_list = []
+        ord_list = Song.all.sort_by do |x|
+            x.name
+        end
+        ord_list.each.with_index(1) do |value, index|
+            puts "#{index}. #{value.artist.name} - #{value.name} - #{value.genre.name}"
+        end
     end
+
+    def list_artists
+        list = []
+        list = Artist.all.sort_by do |x|
+            x.name
+        end
+        list.each.with_index(1) do |value, index|
+            puts "#{index}. #{value.name}"
+        end
+    end
+
+    def list_genres
+        list = []
+        list = Genre.all.sort_by do |x|
+            x.name
+        end
+        list.each.with_index(1) do |value, index|
+            puts "#{index}. #{value.name}"
+        end
+    end
+
+    def list_songs_by_artist
+        puts "Please enter the name of an artist:"
+        input = gets
+        list = []
+        obj = Artist.find_by_name(input)
+        # binding.pry
+        if obj 
+            list = obj.songs.sort_by do |x|
+                x.name
+                # binding.pry
+            end
+            list.each.with_index(1) do |value, index|
+                puts "#{index}. #{value.name} - #{value.genre.name}"
+            end   
+         end   
+    end
+
+
 
 end

@@ -1,9 +1,11 @@
-!/usr/bin/env ruby
+#!/usr/bin/env ruby
 
 require_relative '../config/environment'
 require 'pry'
 
 
 MusicLibraryController.new.call
+
+
 
 
