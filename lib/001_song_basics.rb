@@ -39,11 +39,10 @@ attr_accessor :name, :artist, :genre
     end
 
     def artist=(artist)
-        @artist = artist
+        @artist = artist    
         if artist
         artist.add_song(self)
         end
-        #binding.pry
     end
 
     def self.find_by_name(song_name)

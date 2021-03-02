@@ -3,7 +3,7 @@ require 'pry'
 class Genre
     extend Concerns::Findable
 
-    attr_accessor :name
+    attr_accessor :name, :songs
     
     @@all = []
     
@@ -31,12 +31,12 @@ class Genre
             return new_genre
         end 
 
-        def songs 
-            Song.all.each do |song|
-                song.genre == self
-                @songs << song
-            end
-        end
+        # def songs 
+        #     Song.all.each do |song|
+        #         song.genre == self
+        #         @songs << song
+        #     end
+        # end
 
         def artists
             list = []
